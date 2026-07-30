@@ -4,6 +4,10 @@ import { Header } from "@/components/layout/header";
 import { Metadata } from "next";
 import { Footer } from "@/components/layout/footer";
 
+export async function generateStaticParams() {
+  return Array.from({ length: 604 }, (_, i) => ({ number: String(i + 1) }))
+}
+
 interface PageProps {
   params: {
     number: string;

@@ -4,6 +4,10 @@ import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { Metadata } from "next"
 
+export async function generateStaticParams() {
+  return Array.from({ length: 114 }, (_, i) => ({ id: String(i + 1) }))
+}
+
 interface SurahPageProps {
   params: {
     id: string

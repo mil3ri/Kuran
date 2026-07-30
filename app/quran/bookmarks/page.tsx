@@ -64,8 +64,11 @@ export default function BookmarksPage() {
     const { surahId, verseNumber } = getVerseInfo(verseId);
 
     try {
-      // API'den ayet metnini al
-      const response = await fetch(`/api/quran/surah/${surahId}`);
+      const isStatic = process.env.NEXT_PUBLIC_DATA_SOURCE === 'static';
+      const url = isStatic
+        ? `/Kuran/data/quran/surah/${surahId}.json`
+        : `/api/quran/surah/${surahId}`;
+      const response = await fetch(url);
       if (response.ok) {
         const data = await response.json();
         const verse = data.data.find(
