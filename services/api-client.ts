@@ -1,13 +1,17 @@
 import type { DIBApiResponse, DIBChaptersResponse } from '@/types/quran'
 
-// API Client for DIB Quran API - Using Next.js API routes to avoid CORS
+const isStatic = process.env.NEXT_PUBLIC_DATA_SOURCE === 'static'
+
+// API Client for DIB Quran API
+// In static mode: fetches from pre-generated JSON files in /data/
+// In server mode: fetches from Next.js API routes to avoid CORS
 class ApiClient {
   private async request<T>(
     endpoint: string,
     options: RequestInit = {}
   ): Promise<T> {
-    const url = `/api${endpoint}`
-    
+    const url = isStatic ? `/Kuran/data${endpoint}.json` : `/api${endpoint}`
+
     const defaultHeaders = {
       'Content-Type': 'application/json',
     }

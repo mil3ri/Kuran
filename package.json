@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "fetch-data": "node scripts/fetch-quran-data.mjs",
+    "build:static": "STATIC_EXPORT=true NEXT_PUBLIC_DATA_SOURCE=static next build"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
